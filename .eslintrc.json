@@ -33,6 +33,7 @@
         "react/jsx-filename-extension": [1, { "extensions": [".jsx"] }],
         "import/extensions": [1, {
             ".jsx": "never"
-        }]
+        }],
+        "linebreak-style": 0
     }
 }
