@@ -6,8 +6,10 @@ import SearchBar from './Components/SearchBar/SearchBar';
 export default function App() {
   return (
     <div className="page-wrapper">
-      <SearchBar />
-      <Card />
+      <div className="page-content">
+        <SearchBar />
+        <Card />
+      </div>
     </div>
   );
 }
