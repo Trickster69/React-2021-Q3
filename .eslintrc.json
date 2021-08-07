@@ -20,6 +20,7 @@
     "rules": {
         "react/prop-types": "off",
         "no-use-before-define": "off",
+        "react/destructuring-assignment": "warn",
         "import/no-unresolved": "off",
         "no-plusplus": "off",
         "no-console": "warn",

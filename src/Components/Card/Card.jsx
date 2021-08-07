@@ -3,8 +3,7 @@ import styles from './Card.module.css';
 import Activity from './Activity/Activity';
 import Discription from './Discription/Discription';
 
-export default function Card(p) {
-  const { props } = p;
+export default function Card(props) {
   return (
     <div className={styles.card_wrapper}>
       <div className={styles.card}>

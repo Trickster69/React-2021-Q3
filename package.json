@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build v",
     "serve": "vite preview",
     "lint": "node ./node_modules/eslint/bin/eslint.js --ext .jsx --ext .js src/",
     "fix": "prettier-eslint --write \"src/**/*.jsx\""
