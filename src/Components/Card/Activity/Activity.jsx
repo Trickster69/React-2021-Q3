@@ -3,7 +3,8 @@ import styles from './Activity.module.css';
 import likeSvg from '../../../assets/images/SearchBar/like.svg';
 import viewsSvg from '../../../assets/images/SearchBar/view.svg';
 
-export default function Activity(props) {
+export default function Activity(p) {
+  const { props } = p;
   return (
     <div className={styles.card__socialActivity}>
       <div className={styles.card_social}>

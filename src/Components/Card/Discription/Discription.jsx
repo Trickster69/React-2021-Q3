@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './Discription.module.css';
 
-export default function Discription(props) {
+export default function Discription(p) {
+  const { props } = p;
   return (
     <div className={styles.card__discription}>
       <div className={styles.card__title}>{props.title}</div>

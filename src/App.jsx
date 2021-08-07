@@ -3,7 +3,8 @@ import './App.css';
 import Card from './Components/Card/Card';
 import SearchBar from './Components/SearchBar/SearchBar';
 
-export default function App(props) {
+export default function App(p) {
+  const { props } = p;
   const cards = props.state.card.map((card) => <Card card={card} />);
   return (
     <div className="page-wrapper">
