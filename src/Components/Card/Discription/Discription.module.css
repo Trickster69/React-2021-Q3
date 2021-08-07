@@ -1,0 +1,39 @@
+/*Discriprion*/
+.card__discription {
+    padding: 5px 10px 10px 10px;
+}
+
+.card__title {
+    color: rgb(66 133 244);
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.card__authorBlock {
+    margin-top: 50px;
+}
+
+.card_by {
+    font-weight: 600;
+}
+
+.card__author {
+    padding-left: 5px;
+    font-size: 17px;
+    font-weight: 500;
+    color: rgb(52 168 83);
+}
+
+.card__border {
+    border: 1px solid rgba(128, 128, 128, 0.247);
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+
+.card__tags {
+    text-align: left;
+    font-weight: 700;
+    color: rgba(128, 128, 128, 0.76);
+}
+

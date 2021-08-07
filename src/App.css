@@ -49,6 +49,6 @@ body {
 }
 
 .page-content {
-  background-color: rgba(0, 0, 255, 0.514);
-  margin-top: 200px;
+  /* background-color: rgba(0, 0, 255, 0.514); */
+  margin-top: 100px;
 }
