@@ -51,4 +51,15 @@ body {
 .page-content {
   /* background-color: rgba(0, 0, 255, 0.514); */
   margin-top: 100px;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
