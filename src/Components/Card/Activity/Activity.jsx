@@ -3,7 +3,7 @@ import styles from './Activity.module.css';
 import likeSvg from '../../../assets/images/SearchBar/like.svg';
 import viewsSvg from '../../../assets/images/SearchBar/view.svg';
 
-export default function Activity(props) {
+export default function Activity({ likeCount, viewsCount }) {
   return (
     <div className={styles.card__socialActivity}>
       <div className={styles.card_social}>
@@ -11,14 +11,14 @@ export default function Activity(props) {
           <div className={`${styles.social_img}`}>
             <img src={likeSvg} alt="like-Icon" />
           </div>
-          <div className={styles.card__socialInfo}>{props.likeCount}</div>
+          <div className={styles.card__socialInfo}>{likeCount}</div>
         </div>
 
         <div className={styles.card__viewers}>
           <div className={`${styles.social_img}`}>
             <img src={viewsSvg} alt="" />
           </div>
-          <div className={styles.card__socialInfo}>{props.viewsCount}</div>
+          <div className={styles.card__socialInfo}>{viewsCount}</div>
         </div>
       </div>
 

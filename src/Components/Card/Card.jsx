@@ -3,22 +3,15 @@ import styles from './Card.module.css';
 import Activity from './Activity/Activity';
 import Discription from './Discription/Discription';
 
-export default function Card(props) {
+export default function Card({ card }) {
   return (
     <div className={styles.card_wrapper}>
       <div className={styles.card}>
         <div className={styles.card__image}>
-          <img src={props.card.img} alt="" />
+          <img src={card.img} alt="" />
         </div>
-        <Discription
-          title={props.card.title}
-          name={props.card.name}
-          tags={props.card.tags}
-        />
-        <Activity
-          likeCount={props.card.likeCount}
-          viewsCount={props.card.viewsCount}
-        />
+        <Discription title={card.title} name={card.name} tags={card.tags} />
+        <Activity likeCount={card.likeCount} viewsCount={card.viewsCount} />
       </div>
     </div>
   );
