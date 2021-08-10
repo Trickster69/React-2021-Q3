@@ -1,0 +1,139 @@
+.form {
+    margin: 0 auto;
+    margin-top: 10px;
+    border: 2px solid gray;
+    width: 400px;
+    height: 300px;
+    padding: 15px;
+}
+
+.switcher {
+    position: relative;
+}
+
+.switch {
+    background-color: white;
+    width: 50px;
+    height: 20px;
+    position: absolute;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+    top: 0px;
+    left: 165px;
+}
+
+.switch::before,
+.switch::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    position: absolute;
+    border-radius: 50%;
+    top: -10%;
+    left: -8%;
+    transition: all 350ms cubic-bezier(0, 0.95, 0.38, 0.98), background 150ms ease;
+    transform-origin: right center;
+
+}
+
+.switch::before {
+    border: 1px solid lightblue;
+}
+
+.switch::after {
+    background: #FBD3E1;
+    border: 1px solid pink;
+}
+
+input:checked+.switch:before {
+    background: #D3F0FB;
+    transform: translateX(165%);
+    border: 1px solid pink;
+}
+
+input+.switch .female {
+    color: pink;
+}
+
+input:checked+.switch .male {
+    color: lightblue;
+}
+
+input+.switch .male {
+    color: #ccc;
+}
+
+input:checked+.switch .female {
+    color: #ccc;
+}
+
+input:checked+.switch:after {
+    background: #D3F0FB;
+    transform: translateX(165%);
+    border: 1px solid lightblue;
+}
+
+.female,
+.male {
+    position: absolute;
+    font-weight: lighter;
+    color: #ccc;
+}
+
+.female {
+    z-index: -1;
+    top: 8%;
+    left: 2%;
+    transform: rotate(180deg);
+    font-size: 21px;
+}
+
+.male {
+    z-index: -1;
+    left: 87%;
+    top: -145%;
+    font-size: 20px;
+    transform: rotate(-50deg);
+}
+
+a .i1 {
+    width: 10px;
+    bottom: 2%;
+    position: absolute;
+    right: 3%;
+    text-decoration: none;
+    color: #ccc;
+    font-size: 2vw;
+    animation: bounce 2s alternate infinite;
+}
+
+.i1 {
+    opacity: 0.5;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-30px);
+    }
+
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+.promo {
+    margin-top: 20px;
+}

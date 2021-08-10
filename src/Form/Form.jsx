@@ -2,5 +2,126 @@ import React, { useState } from 'react';
 import s from './Form.module.css';
 
 export default function Form() {
-  return <div>Forma</div>;
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [zipCode, setZipCode] = useState('');
+  const [deliveryDate, setDeliveryDate] = useState('');
+  const [country, setCountry] = useState('Belarus');
+  const [promotion, setPromotion] = useState(false);
+  const [gender, setGender] = useState('female');
+
+  const submit = (e) => {
+    e.preventDefault();
+    console.log(gender);
+  };
+  return (
+    <form className={s.form} onSubmit={submit}>
+      <div>
+        <label htmlFor="firstName">
+          Name
+          <br />
+          <input
+            type="text"
+            name="firstName"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </label>
+      </div>
+
+      <div>
+        <label htmlFor="lastName">
+          Surname
+          <br />
+          <input
+            type="text"
+            name="lastName"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </label>
+      </div>
+
+      <div>
+        <label htmlFor="zipCode">
+          Post code
+          <br />
+          <input
+            type="number"
+            name="zipCode"
+            value={zipCode}
+            onChange={(e) => setZipCode(e.target.value)}
+          />
+        </label>
+      </div>
+
+      <div>
+        <label htmlFor="deliveryDate">
+          Choose the delivery day
+          <br />
+          <input
+            type="date"
+            name="deliveryDate"
+            value={deliveryDate}
+            onChange={(e) => setDeliveryDate(e.target.value)}
+          />
+        </label>
+      </div>
+
+      <div>
+        <label htmlFor="country">
+          Select Country:
+          <br />
+          <select
+            name="country"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+          >
+            <option>Belarus</option>
+            <option>Ukraine</option>
+            <option>Russia</option>
+          </select>
+        </label>
+      </div>
+
+      <div className={s.switcher}>
+        Choose your gender:
+        <input
+          name="switch"
+          id="switch"
+          type="checkbox"
+          onChange={(e) => {
+            if (e.target.checked) {
+              setGender('male');
+            } else {
+              setGender('female');
+            }
+          }}
+          hidden
+        />
+        <label htmlFor="switch" className={s.switch}>
+          <input type="checkbox" name="switch" id="switch" hidden />
+          <h1 className={s.female}>✝</h1>
+          <h1 className={s.male}>➜</h1>
+        </label>
+      </div>
+
+      <div className={s.promo}>
+        <label htmlFor="promotion">
+          Do you want to receive notifications about promotions?
+          <br />
+          <input
+            type="checkbox"
+            name="promotion"
+            value={promotion}
+            onChange={() => setPromotion((curAnswer) => !curAnswer)}
+          />
+        </label>
+      </div>
+
+      <div>
+        <input type="submit" value="Send" />
+      </div>
+    </form>
+  );
 }
