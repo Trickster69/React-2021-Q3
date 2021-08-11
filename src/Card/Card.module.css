@@ -1,0 +1,13 @@
+.card {
+    width: 200px;
+    height: 180px;
+    border:  2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 10px 10px 0px;
+}
+
+.card span {
+    margin-left: 10px;
+}

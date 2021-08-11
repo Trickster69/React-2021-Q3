@@ -1,18 +1,28 @@
 import React, { useState } from 'react';
 import s from './Form.module.css';
 
-export default function Form() {
+export default function Form({ setFormData }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [zipCode, setZipCode] = useState('');
   const [deliveryDate, setDeliveryDate] = useState('');
   const [country, setCountry] = useState('Belarus');
-  const [promotion, setPromotion] = useState(false);
+  const [processingData, setProcessingData] = useState(false);
   const [gender, setGender] = useState('female');
 
   const submit = (e) => {
     e.preventDefault();
-    console.log(gender);
+    setFormData((curData) => [
+      ...curData,
+      {
+        firstName,
+        lastName,
+        zipCode,
+        deliveryDate,
+        country,
+        gender,
+      },
+    ]);
   };
   return (
     <form className={s.form} onSubmit={submit}>
@@ -106,21 +116,20 @@ export default function Form() {
         </label>
       </div>
 
-      <div className={s.promo}>
-        <label htmlFor="promotion">
-          Do you want to receive notifications about promotions?
-          <br />
+      <div className={s.processingData}>
+        <label htmlFor="precessingData">
+          Do you agree to the data processing?
           <input
             type="checkbox"
-            name="promotion"
-            value={promotion}
-            onChange={() => setPromotion((curAnswer) => !curAnswer)}
+            name="precessingData"
+            value={processingData}
+            onChange={() => setProcessingData((curAnswer) => !curAnswer)}
           />
         </label>
       </div>
 
-      <div>
-        <input type="submit" value="Send" />
+      <div className={s.btn_wrapper}>
+        <input type="submit" value="Send" className={s.send_btn} />
       </div>
     </form>
   );
