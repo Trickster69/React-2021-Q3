@@ -8,10 +8,21 @@ export default function Form({ setFormData }) {
   const [deliveryDate, setDeliveryDate] = useState('');
   const [country, setCountry] = useState('Belarus');
   const [processingData, setProcessingData] = useState(false);
-  const [gender, setGender] = useState('female');
+  const [gender, setGender] = useState(false);
+
+  const resetFields = () => {
+    setFirstName('');
+    setLastName('');
+    setZipCode('');
+    setDeliveryDate('');
+    setCountry('Belarus');
+    setProcessingData(false);
+    setGender(false);
+  };
 
   const submit = (e) => {
     e.preventDefault();
+    resetFields();
     setFormData((curData) => [
       ...curData,
       {
@@ -100,14 +111,9 @@ export default function Form({ setFormData }) {
           name="switch"
           id="switch"
           type="checkbox"
-          onChange={(e) => {
-            if (e.target.checked) {
-              setGender('male');
-            } else {
-              setGender('female');
-            }
-          }}
-          hidden
+          checked={gender}
+          onChange={() => setGender((curAnswer) => !curAnswer)}
+          // hidden
         />
         <label htmlFor="switch" className={s.switch}>
           <input type="checkbox" name="switch" id="switch" hidden />
@@ -122,7 +128,7 @@ export default function Form({ setFormData }) {
           <input
             type="checkbox"
             name="precessingData"
-            value={processingData}
+            checked={processingData}
             onChange={() => setProcessingData((curAnswer) => !curAnswer)}
           />
         </label>

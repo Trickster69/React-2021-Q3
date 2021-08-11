@@ -2,6 +2,12 @@ import React from 'react';
 import s from './Card.module.css';
 
 export default function Card({ formData }) {
+  function addSex() {
+    if (formData.gender) {
+      return <span>Male</span>;
+    }
+    return <span>Female</span>;
+  }
   return (
     <div className={s.card}>
       <div>
@@ -26,7 +32,7 @@ export default function Card({ formData }) {
       </div>
       <div>
         <span>Sex:</span>
-        <span>{formData.gender}</span>
+        {addSex()}
       </div>
     </div>
   );

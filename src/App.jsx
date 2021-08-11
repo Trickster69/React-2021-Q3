@@ -5,7 +5,7 @@ import Card from './Card/Card';
 
 function App() {
   const [formData, setFormData] = useState([]);
-  console.log(formData);
+  // console.log(formData);
   // formData.forEach((key) => console.log(key));
   return (
     <div className="form-wrapper">
