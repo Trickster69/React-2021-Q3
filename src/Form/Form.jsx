@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import s from './Form.module.css';
 
 export default function Form({ setFormData }) {
@@ -9,6 +9,46 @@ export default function Form({ setFormData }) {
   const [country, setCountry] = useState('Belarus');
   const [processingData, setProcessingData] = useState(false);
   const [gender, setGender] = useState(false);
+
+  const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    validate();
+  }, [
+    processingData,
+    firstName,
+    lastName,
+    zipCode,
+    deliveryDate,
+    country,
+    gender,
+  ]);
+
+  const activeSendBtn = () => {
+    if (Object.keys(errors).length === 0) {
+      return `${s.send} ${s.send_btn}`;
+    }
+    return `${s.send_btn} ${s.no_send}`;
+  };
+
+  const validate = () => {
+    setErrors({});
+    if (!processingData) {
+      setErrors((curErrors) => ({ ...curErrors, processingData }));
+    }
+    if (firstName === '') {
+      setErrors((curErrors) => ({ ...curErrors, firstName }));
+    }
+    if (lastName === '') {
+      setErrors((curErrors) => ({ ...curErrors, lastName }));
+    }
+    if (zipCode === '') {
+      setErrors((curErrors) => ({ ...curErrors, zipCode }));
+    }
+    if (deliveryDate === '') {
+      setErrors((curErrors) => ({ ...curErrors, deliveryDate }));
+    }
+  };
 
   const resetFields = () => {
     setFirstName('');
@@ -22,24 +62,29 @@ export default function Form({ setFormData }) {
 
   const submit = (e) => {
     e.preventDefault();
-    resetFields();
-    setFormData((curData) => [
-      ...curData,
-      {
-        firstName,
-        lastName,
-        zipCode,
-        deliveryDate,
-        country,
-        gender,
-      },
-    ]);
+    if (Object.keys(errors).length === 0) {
+      resetFields();
+      setFormData((curData) => [
+        ...curData,
+        {
+          firstName,
+          lastName,
+          zipCode,
+          deliveryDate,
+          country,
+          gender,
+        },
+      ]);
+    }
   };
   return (
     <form className={s.form} onSubmit={submit}>
       <div>
         <label htmlFor="firstName">
-          Name
+          Name:
+          {errors.firstName === '' && (
+            <span className={s.error}>*required field</span>
+          )}
           <br />
           <input
             type="text"
@@ -52,7 +97,10 @@ export default function Form({ setFormData }) {
 
       <div>
         <label htmlFor="lastName">
-          Surname
+          Surname:
+          {errors.lastName === '' && (
+            <span className={s.error}>*required field</span>
+          )}
           <br />
           <input
             type="text"
@@ -65,7 +113,10 @@ export default function Form({ setFormData }) {
 
       <div>
         <label htmlFor="zipCode">
-          Post code
+          Post code:
+          {errors.zipCode === '' && (
+            <span className={s.error}>*required field</span>
+          )}
           <br />
           <input
             type="number"
@@ -86,6 +137,9 @@ export default function Form({ setFormData }) {
             value={deliveryDate}
             onChange={(e) => setDeliveryDate(e.target.value)}
           />
+          {errors.deliveryDate === '' && (
+            <span className={s.error}>*required field</span>
+          )}
         </label>
       </div>
 
@@ -113,7 +167,7 @@ export default function Form({ setFormData }) {
           type="checkbox"
           checked={gender}
           onChange={() => setGender((curAnswer) => !curAnswer)}
-          // hidden
+          hidden
         />
         <label htmlFor="switch" className={s.switch}>
           <input type="checkbox" name="switch" id="switch" hidden />
@@ -125,7 +179,12 @@ export default function Form({ setFormData }) {
       <div className={s.processingData}>
         <label htmlFor="precessingData">
           Do you agree to the data processing?
+          {errors.processingData === false && (
+            <span className={s.error}>*required field</span>
+          )}
+          <br />
           <input
+            className={s.processing}
             type="checkbox"
             name="precessingData"
             checked={processingData}
@@ -135,7 +194,7 @@ export default function Form({ setFormData }) {
       </div>
 
       <div className={s.btn_wrapper}>
-        <input type="submit" value="Send" className={s.send_btn} />
+        <input type="submit" value="Send" className={activeSendBtn()} />
       </div>
     </form>
   );

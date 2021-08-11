@@ -8,30 +8,31 @@ export default function Card({ formData }) {
     }
     return <span>Female</span>;
   }
+
   return (
     <div className={s.card}>
       <div>
-        <span>Name:</span>
+        <span className={s.card__title}>Name:</span>
         <span>{formData.firstName}</span>
       </div>
       <div>
-        <span>Surname:</span>
+        <span className={s.card__title}>Surname:</span>
         <span>{formData.lastName}</span>
       </div>
       <div>
-        <span>Post code:</span>
+        <span className={s.card__title}>Post code:</span>
         <span>{formData.zipCode}</span>
       </div>
       <div>
-        <span>Delivery day:</span>
+        <span className={s.card__title}>Delivery day:</span>
         <span>{formData.deliveryDate}</span>
       </div>
       <div>
-        <span>Country:</span>
+        <span className={s.card__title}>Country:</span>
         <span>{formData.country}</span>
       </div>
       <div>
-        <span>Sex:</span>
+        <span className={s.card__title}>Sex:</span>
         {addSex()}
       </div>
     </div>
