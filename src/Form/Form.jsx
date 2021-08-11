@@ -48,6 +48,7 @@ export default function Form({ setFormData }) {
     if (deliveryDate === '') {
       setErrors((curErrors) => ({ ...curErrors, deliveryDate }));
     }
+    console.log(errors.firstName);
   };
 
   const resetFields = () => {
