@@ -9,6 +9,7 @@ export default function Form({ setFormData }) {
   const [country, setCountry] = useState('Belarus');
   const [processingData, setProcessingData] = useState(false);
   const [gender, setGender] = useState(false);
+  const [id, setId] = useState(1);
 
   const [errors, setErrors] = useState({});
 
@@ -22,6 +23,7 @@ export default function Form({ setFormData }) {
     deliveryDate,
     country,
     gender,
+    id,
   ]);
 
   const activeSendBtn = () => {
@@ -48,7 +50,6 @@ export default function Form({ setFormData }) {
     if (deliveryDate === '') {
       setErrors((curErrors) => ({ ...curErrors, deliveryDate }));
     }
-    console.log(errors.firstName);
   };
 
   const resetFields = () => {
@@ -65,6 +66,7 @@ export default function Form({ setFormData }) {
     e.preventDefault();
     if (Object.keys(errors).length === 0) {
       resetFields();
+      setId(id + 1);
       setFormData((curData) => [
         ...curData,
         {
@@ -74,6 +76,7 @@ export default function Form({ setFormData }) {
           deliveryDate,
           country,
           gender,
+          id,
         },
       ]);
     }

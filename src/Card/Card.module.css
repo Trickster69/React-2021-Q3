@@ -1,12 +1,15 @@
 .card {
     width: 200px;
     height: 180px;
-    border:  2px solid black;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 10px 10px 10px 0px;
     background-color: white;
+    position: relative;
+    border-radius: 3%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .card__title {
@@ -14,4 +17,24 @@
     font-weight: 700;
     color: #3f51b5;
     padding-right: 10px;
+}
+
+.remove {
+    background-color: transparent;
+    width: 20px;
+    height: 20px;
+    border: none;
+    outline: none;
+    position: absolute;
+    font-size: 20px;
+    right: 10px;
+    top: 0;
+    color: rgb(202, 78, 78);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.remove:hover {
+    color: red;
+    transform: scale(1.1);
 }
