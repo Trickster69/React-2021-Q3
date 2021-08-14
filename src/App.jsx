@@ -6,11 +6,13 @@ import Search from './Components/Search/Search';
 import Sorting from './Components/Sorting/Sorting';
 
 function App() {
+  const [articles, setArticles] = useState([]);
+  console.log(articles);
   return (
     <div className="App">
       <div className="app_wrapper">
-        <Search />
-        <Results />
+        <Search setArticles={setArticles} />
+        <Results data={articles} />
         <Sorting />
         <Pagination />
       </div>

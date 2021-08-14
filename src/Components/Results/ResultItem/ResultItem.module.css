@@ -1,0 +1,49 @@
+.resultItem {
+    padding: 15px 15px;
+    background-color: rgb(7 0 0 / 2%);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    margin: 15px 10px;
+}
+.title {
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 23px;
+    text-align: center;
+}
+.author {
+    margin-top: 10px;
+    display: flex;
+    font-size: 20px;
+    font-style: italic;
+    align-items: center;
+    font-weight: bold;
+
+}
+.author span {
+    padding-right: 5px;
+    font-weight: normal;
+}
+
+.title__date {
+    font-size: 18px;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.source {
+    font-weight: bold;
+}
+
+.content {
+    display: flex;
+    margin-top: 15px;
+    border: 1px solid black;
+    font-size: 19px;
+}
+
+.footer__date {
+    text-align: right;
+    margin-top: 5px;
+}
