@@ -6,7 +6,7 @@ const Pagination = ({
 }) => {
   const [showDiv, setShowDiv] = useState({ showDivPages: true, showDivCount: true });
 
-  const pageCount = Math.floor(articlesCount / resultCount);
+  const pageCount = Math.floor(articlesCount / resultCount) || 1;
 
   function handleInput(e) {
     setPage(e.target.value);
@@ -15,7 +15,7 @@ const Pagination = ({
 
   function nextPage() {
     showDiv.showDivPages = true;
-    if (page >= 20) {
+    if (page >= pageCount) {
       setPage(+page);
     } else {
       setPage(+page + 1);
@@ -36,7 +36,7 @@ const Pagination = ({
       <div className={s.pages}>
         <button
           type="button"
-          onClick={() => prevPage()}
+          onClick={prevPage}
           className={s.pagination__btn}
         >
           &laquo;
@@ -56,14 +56,14 @@ const Pagination = ({
           )}
           <span>
             /
-            {pageCount || 1}
+            {pageCount}
           </span>
         </div>
 
         <button
           type="button"
           className={s.pagination__btn}
-          onClick={() => nextPage()}
+          onClick={nextPage}
         >
           &raquo;
         </button>
