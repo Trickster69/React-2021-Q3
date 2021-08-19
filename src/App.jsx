@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import Header from './Components/Header/Header';
 import Pagination from './Components/Pagination/Pagination';
 import Results from './Components/Results/Results';
 import Search from './Components/Search/Search';
@@ -52,6 +53,7 @@ function App() {
   return (
     <div className="App">
       <div className="app_wrapper">
+        <Header />
         <Search sendData={renderData} searchValue={searchValue} setSearchValue={setSearchValue} />
         <Sorting setSort={setSort} />
         <Pagination page={page} setPage={setPage} resultCount={resultCount} setResultCount={setResultCount} articlesCount={articlesCount} />
