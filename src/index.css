@@ -66,6 +66,7 @@ video {
 
 a {
 	/* ссылка не в общем списке чтобы не сбрасывать outline по умолчанию */
+	color: #000;
 	margin: 0;
 	padding: 0;
 	font-size: 100%;
