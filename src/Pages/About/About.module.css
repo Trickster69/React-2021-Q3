@@ -1,0 +1,17 @@
+.about_wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.about_title h2 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.about_content {
+    font-size: 20px;
+    margin-top: 15px;
+    font-style: italic;
+}

@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import Header from './Components/Header/Header';
 import Pagination from './Components/Pagination/Pagination';
 import Results from './Components/Results/Results';
 import Search from './Components/Search/Search';
 import Sorting from './Components/Sorting/Sorting';
+import About from './Pages/About/About';
+import NotFound from './Pages/NotFound/NotFound';
 
 function App() {
   // const myApKey = '67174a0eb17a40fdb98e15abe64a8943';
@@ -20,7 +24,6 @@ function App() {
 
   const [status, setStatus] = useState({ status: 'ok', message: '' });
   function renderData(e) {
-    // console.log(sort);
     e.preventDefault();
 
     setPage(1);
@@ -51,22 +54,34 @@ function App() {
   useEffect(() => getData(), [sort, page, resultCount]);
 
   return (
-    <div className="App">
-      <div className="app_wrapper">
+    <Router>
+      <div className="App">
         <Header />
-        <Search sendData={renderData} searchValue={searchValue} setSearchValue={setSearchValue} />
-        <Sorting setSort={setSort} />
-        <Pagination page={page} setPage={setPage} resultCount={resultCount} setResultCount={setResultCount} articlesCount={articlesCount} />
+        <div className="app_wrapper">
+          <Switch>
+            <Route exact path="/">
 
-        {articles
-          ? <Results data={articles} />
-          : <div className="noData">Enter your request.</div>}
+              <Search sendData={renderData} searchValue={searchValue} setSearchValue={setSearchValue} />
 
-        {load && <div className="loader" />}
-        {status.status === 'error' && <div className="error">{status.message}</div>}
+              <Sorting setSort={setSort} />
 
+              <Pagination page={page} setPage={setPage} resultCount={resultCount} setResultCount={setResultCount} articlesCount={articlesCount} />
+
+              {articles.length > 0
+                ? <Results data={articles} />
+                : <div className="noData">Enter your request.</div>}
+
+              {load && <div className="loader" />}
+              {status.status === 'error' && <div className="error">{status.message}</div>}
+            </Route>
+
+            <Route exact path="/about" component={About} />
+            <Route path="/*" component={NotFound} />
+          </Switch>
+
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 

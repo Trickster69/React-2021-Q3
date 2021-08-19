@@ -1,6 +1,27 @@
 .header {
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.205);
+    background-color: rgb(15 0 73);
     height: 50px;
     border-bottom: 1px solid black;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+a {
+    color: white;
+    font-size: 20px;
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    color: white;
 }

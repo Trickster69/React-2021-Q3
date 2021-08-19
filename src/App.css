@@ -1,3 +1,8 @@
+.App {
+    background-color: #FCFCFC;
+    height: 100vh;
+}
+
 .app_wrapper {
     margin: 0 auto;
     max-width: 1200px;
