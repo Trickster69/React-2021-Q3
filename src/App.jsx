@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Header from './Components/Header/Header';
 import Pagination from './Components/Pagination/Pagination';
 import Results from './Components/Results/Results';
@@ -61,33 +61,49 @@ function App() {
       <div className="App">
         <Header />
         <div className="app_wrapper">
-          <Switch>
-            <Route exact path="/">
-              <Search sendData={renderData} searchValue={searchValue} setSearchValue={setSearchValue} />
+          <Route render={({ location }) => (
+            <TransitionGroup>
+              <CSSTransition
+                key={location.key}
+                timeout={300}
+                classNames="fade"
+              >
+                <Switch location={location}>
+                  <Route exact path="/">
+                    <div className="page">
+                      <Search sendData={renderData} searchValue={searchValue} setSearchValue={setSearchValue} />
 
-              <Sorting setSort={setSort} />
+                      <Sorting setSort={setSort} />
 
-              <Pagination
-                page={page}
-                setPage={setPage}
-                resultCount={resultCount}
-                setResultCount={setResultCount}
-                articlesCount={articlesCount}
-              />
+                      <Pagination
+                        page={page}
+                        setPage={setPage}
+                        resultCount={resultCount}
+                        setResultCount={setResultCount}
+                        articlesCount={articlesCount}
+                      />
 
-              {articles.length > 0 ? (
-                <Results data={articles} searchValue={searchValue} />
-              ) : (
-                <div className="noData">Enter your request.</div>
-              )}
+                      {articles.length > 0 ? (
+                        <Results data={articles} searchValue={searchValue} />
+                      ) : (
+                        <div className="noData">Enter your request.</div>
+                      )}
 
-              {load && <div className="loader" />}
-              {status.status === 'error' && <div className="error">{status.message}</div>}
-            </Route>
-            <Route path="/detail/:id" component={Details} />
-            <Route exact path="/about" component={About} />
-            <Route path="/*" component={NotFound} />
-          </Switch>
+                      {load && <div className="loader" />}
+                      {status.status === 'error' && <div className="error">{status.message}</div>}
+                    </div>
+
+                  </Route>
+                  <Route path="/detail/:id" component={Details} />
+                  <Route exact path="/about" component={About} />
+                  <Route path="/*" component={NotFound} />
+                </Switch>
+              </CSSTransition>
+
+            </TransitionGroup>
+          )}
+          />
+
         </div>
       </div>
     </Router>

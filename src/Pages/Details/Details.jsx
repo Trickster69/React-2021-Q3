@@ -31,7 +31,7 @@ const Details = ({ match }) => {
   };
 
   return (
-    <div>
+    <div className="page">
       {load && <div className="loader" />}
       <h2 className={s.title}>Details about item</h2>
       {curData && statusResp === 'ok' ? (
