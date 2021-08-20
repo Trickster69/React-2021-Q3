@@ -19,9 +19,8 @@ const Details = ({ match }) => {
       .then((data) => {
         setStatusResp(data.status);
         data.articles.forEach((key) => {
-          if (key.publishedAt === id) {
+          if (key.title === id) {
             setCurData(key);
-            console.log(curData);
             setLoad(false);
           }
         });
