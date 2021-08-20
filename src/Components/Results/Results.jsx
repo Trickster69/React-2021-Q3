@@ -3,21 +3,21 @@ import { Link } from 'react-router-dom';
 import s from './Results.module.css';
 import ResultItem from './ResultItem/ResultItem';
 
-const Results = ({ data, searchValue }) => {
+const Results = ({ articles, searchValue }) => {
   console.log('');
   return (
     <div className={s.results}>
-      {data.map((key) => (
-        <Link Link to={`/detail/${searchValue}@${key.publishedAt}`}>
+      {articles.map((el) => (
+        <Link Link to={`/detail/${searchValue}@${el.publishedAt}`}>
           <ResultItem
-            author={key.author}
-            content={key.description}
-            title={key.title}
-            date={key.publishedAt}
-            sourceName={key.source.name}
-            sourceLink={key.url}
-            img={key.urlToImage}
-            keyId={key.id}
+            author={el.author}
+            content={el.description}
+            title={el.title}
+            date={el.publishedAt}
+            sourceName={el.source.name}
+            sourceLink={el.url}
+            img={el.urlToImage}
+            key={el.id}
           />
         </Link>
       ))}

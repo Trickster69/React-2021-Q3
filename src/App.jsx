@@ -3,13 +3,10 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Header from './Components/Header/Header';
-import Pagination from './Components/Pagination/Pagination';
-import Results from './Components/Results/Results';
-import Search from './Components/Search/Search';
-import Sorting from './Components/Sorting/Sorting';
 import About from './Pages/About/About';
 import NotFound from './Pages/NotFound/NotFound';
 import Details from './Pages/Details/Details';
+import Home from './Pages/Home/Home';
 
 function App() {
   // const myApKey = '67174a0eb17a40fdb98e15abe64a8943';
@@ -20,18 +17,16 @@ function App() {
   const [page, setPage] = useState(1);
   const [resultCount, setResultCount] = useState(5);
   const [articlesCount, SetArticlesCount] = useState('');
-
   const [load, setLoad] = useState(false);
-
   const [status, setStatus] = useState({ status: 'ok', message: '' });
+
   function renderData(e) {
     e.preventDefault();
-
     setPage(1);
-    getData();
+    fetchData();
   }
 
-  function getData() {
+  function fetchData() {
     if (searchValue) {
       try {
         setLoad(true);
@@ -40,7 +35,7 @@ function App() {
         )
           .then((res) => res.json())
           .then((data) => {
-            setStatus({ ...status, status: data.status, message: data.message });
+            setStatus({ status: data.status, message: data.message });
             data.articles.forEach((key) => {
               key.id = Math.floor((Date.now() * Math.random()) / 100000);
             });
@@ -50,11 +45,15 @@ function App() {
           });
       } catch (error) {
         console.error(error);
+      } finally {
+        setTimeout(() => {
+          setLoad(false);
+        }, 1000);
       }
     }
   }
 
-  useEffect(() => getData(), [sort, page, resultCount]);
+  useEffect(() => fetchData(), [sort, page, resultCount]);
 
   return (
     <Router>
@@ -69,31 +68,26 @@ function App() {
                 classNames="fade"
               >
                 <Switch location={location}>
-                  <Route exact path="/">
-                    <div className="page">
-                      <Search sendData={renderData} searchValue={searchValue} setSearchValue={setSearchValue} />
-
-                      <Sorting setSort={setSort} />
-
-                      <Pagination
-                        page={page}
-                        setPage={setPage}
+                  <Route
+                    exact
+                    path="/"
+                    render={() => (
+                      <Home
+                        renderData={renderData}
+                        articles={articles}
+                        setSort={setSort}
+                        searchValue={searchValue}
+                        setSearchValue={setSearchValue}
+                        articlesCount={articlesCount}
+                        load={load}
+                        status={status}
                         resultCount={resultCount}
                         setResultCount={setResultCount}
-                        articlesCount={articlesCount}
+                        page={page}
+                        setPage={setPage}
                       />
-
-                      {articles.length > 0 ? (
-                        <Results data={articles} searchValue={searchValue} />
-                      ) : (
-                        <div className="noData">Enter your request.</div>
-                      )}
-
-                      {load && <div className="loader" />}
-                      {status.status === 'error' && <div className="error">{status.message}</div>}
-                    </div>
-
-                  </Route>
+                    )}
+                  />
                   <Route path="/detail/:id" component={Details} />
                   <Route exact path="/about" component={About} />
                   <Route path="/*" component={NotFound} />

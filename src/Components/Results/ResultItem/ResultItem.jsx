@@ -4,7 +4,6 @@ import s from './ResultItem.module.css';
 const ResultItem = ({
   author, content, title, date, sourceName, sourceLink, img,
 }) => (
-  //   console.log('sdfds');
   <div className={s.resultItem}>
     <h3 className={s.title}>{title}</h3>
     <div className={s.author}>

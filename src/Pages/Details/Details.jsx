@@ -21,6 +21,7 @@ const Details = ({ match }) => {
         data.articles.forEach((key) => {
           if (key.publishedAt === id) {
             setCurData(key);
+            console.log(curData);
             setLoad(false);
           }
         });
@@ -34,7 +35,7 @@ const Details = ({ match }) => {
     <div className="page">
       {load && <div className="loader" />}
       <h2 className={s.title}>Details about item</h2>
-      {curData && statusResp === 'ok' ? (
+      {Object.keys(curData).length > 0 && statusResp === 'ok' ? (
         <div div className={s.details_wrapper}>
           <div className={s.details__row}>
             <span className={s.details__title}>Author:</span>
