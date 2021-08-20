@@ -34,16 +34,14 @@ const Pagination = ({
   return (
     <div className={s.pagination}>
       <div className={s.pages}>
-        <button
-          type="button"
-          onClick={prevPage}
-          className={s.pagination__btn}
-        >
+        <button type="button" onClick={prevPage} className={s.pagination__btn}>
           &laquo;
         </button>
         <div className={s.page_nums}>
           {showDiv.showDivPages ? (
-            <button className={s.curPage} type="button" onClick={() => setShowDiv({ ...showDiv, showDivPages: false })}>{page}</button>
+            <button className={s.curPage} type="button" onClick={() => setShowDiv({ ...showDiv, showDivPages: false })}>
+              {page}
+            </button>
           ) : (
             <input
               type="number"
@@ -60,11 +58,7 @@ const Pagination = ({
           </span>
         </div>
 
-        <button
-          type="button"
-          className={s.pagination__btn}
-          onClick={nextPage}
-        >
+        <button type="button" className={s.pagination__btn} onClick={nextPage}>
           &raquo;
         </button>
       </div>

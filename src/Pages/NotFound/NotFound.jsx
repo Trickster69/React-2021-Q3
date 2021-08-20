@@ -13,7 +13,9 @@ const NotFound = () => (
             <br />
             We can offer you to watch a video with cute pandas or return to the main page
           </div>
-          <Link to="/" className={`${s.oops__button} ${s.btnReset}`}>Back to main page</Link>
+          <Link to="/" className={`${s.oops__button} ${s.btnReset}`}>
+            Back to main page
+          </Link>
           <div className={s.oops__404}>404</div>
         </div>
       </div>

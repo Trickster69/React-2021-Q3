@@ -2,11 +2,10 @@ import React from 'react';
 import s from './ResultItem.module.css';
 
 const ResultItem = ({
-  author, content, title, date, sourceName, sourceLink, img, keyId,
-}) =>
-//   console.log('sdfds');
-(
-  <div className={s.resultItem} onClick={() => console.log(keyId)}>
+  author, content, title, date, sourceName, sourceLink, img,
+}) => (
+  //   console.log('sdfds');
+  <div className={s.resultItem}>
     <h3 className={s.title}>{title}</h3>
     <div className={s.author}>
       <span>By:</span>

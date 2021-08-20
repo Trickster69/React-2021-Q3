@@ -51,66 +51,64 @@ time,
 mark,
 audio,
 video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	/* обнуляем отступы и убираем бордюры */
-	vertical-align: baseline;
-	/* приводим все к одной базовой линии */
-	background: transparent;
-	/* чтобы не проскакивали левые фоны, установленные по умолчанию */
-	font-size: 100%;
-	/* размер шрифта всем одинаковый */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  /* обнуляем отступы и убираем бордюры */
+  vertical-align: baseline;
+  /* приводим все к одной базовой линии */
+  background: transparent;
+  /* чтобы не проскакивали левые фоны, установленные по умолчанию */
+  font-size: 100%;
+  /* размер шрифта всем одинаковый */
 }
 
 a {
-	/* ссылка не в общем списке чтобы не сбрасывать outline по умолчанию */
-	color: #000;
-	margin: 0;
-	padding: 0;
-	font-size: 100%;
-	vertical-align: baseline;
-	background: transparent;
-	outline: none;
+  /* ссылка не в общем списке чтобы не сбрасывать outline по умолчанию */
+  color: #000;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  outline: none;
 }
 
 table {
-	/* устраняем отступы между ячейками таблицы */
-	border-collapse: collapse;
-	border-spacing: 0;
+  /* устраняем отступы между ячейками таблицы */
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 td,
 td img {
-	vertical-align: top;
-	/* возвращаем привычное вертикальное выравнивание */
+  vertical-align: top;
+  /* возвращаем привычное вертикальное выравнивание */
 }
-
-
 
 /* --------------- базовые настройки ---------*/
 html {
-	min-height: 100%;
-	/* всегда показываем вертикальную полосу прокрутки  */
+  min-height: 100%;
+  /* всегда показываем вертикальную полосу прокрутки  */
 }
 
 body {
-	color: #000;
-	text-align: left;
-	font-size: 1em;
-	/* используем безопасные шрифтовые CSS стеки */
-	min-height: 100%;
+  color: #000;
+  text-align: left;
+  font-size: 1em;
+  /* используем безопасные шрифтовые CSS стеки */
+  min-height: 100%;
 }
 
 a:hover {
-	color: #B4A251;
-	text-decoration: none;
+  color: #b4a251;
+  text-decoration: none;
 }
 
 a:focus,
 a:active {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 h1,
@@ -119,13 +117,11 @@ h3,
 h4,
 h5,
 h6 {
-	font-weight: normal;
+  font-weight: normal;
 }
 
 img {
-
-	max-width: 100%;
+  max-width: 100%;
 }
-
 
 /* --------------- /базовые настройки ---------*/

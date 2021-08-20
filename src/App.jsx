@@ -20,7 +20,6 @@ function App() {
   const [page, setPage] = useState(1);
   const [resultCount, setResultCount] = useState(5);
   const [articlesCount, SetArticlesCount] = useState('');
-  const [curCardId, setCurCardId] = useState('');
 
   const [load, setLoad] = useState(false);
 
@@ -42,8 +41,9 @@ function App() {
           .then((res) => res.json())
           .then((data) => {
             setStatus({ ...status, status: data.status, message: data.message });
-            data.articles.map((key) => key.id = Math.floor((Date.now() * Math.random()) / 100000));
-            console.log(data);
+            data.articles.forEach((key) => {
+              key.id = Math.floor((Date.now() * Math.random()) / 100000);
+            });
             SetArticlesCount(data.totalResults);
             setArticles(data.articles);
             setLoad(false);
@@ -63,26 +63,31 @@ function App() {
         <div className="app_wrapper">
           <Switch>
             <Route exact path="/">
-
               <Search sendData={renderData} searchValue={searchValue} setSearchValue={setSearchValue} />
 
               <Sorting setSort={setSort} />
 
-              <Pagination page={page} setPage={setPage} resultCount={resultCount} setResultCount={setResultCount} articlesCount={articlesCount} />
+              <Pagination
+                page={page}
+                setPage={setPage}
+                resultCount={resultCount}
+                setResultCount={setResultCount}
+                articlesCount={articlesCount}
+              />
 
-              {articles.length > 0
-                ? <Results data={articles} searchValue={searchValue} />
-                : <div className="noData">Enter your request.</div>}
+              {articles.length > 0 ? (
+                <Results data={articles} searchValue={searchValue} />
+              ) : (
+                <div className="noData">Enter your request.</div>
+              )}
 
               {load && <div className="loader" />}
               {status.status === 'error' && <div className="error">{status.message}</div>}
             </Route>
-            <Route path="/result/:id" component={Details} />
+            <Route path="/detail/:id" component={Details} />
             <Route exact path="/about" component={About} />
             <Route path="/*" component={NotFound} />
-
           </Switch>
-
         </div>
       </div>
     </Router>

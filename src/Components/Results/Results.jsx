@@ -8,7 +8,7 @@ const Results = ({ data, searchValue }) => {
   return (
     <div className={s.results}>
       {data.map((key) => (
-        <Link Link to={`/result/${searchValue}--${key.title}`}>
+        <Link Link to={`/detail/${searchValue}@${key.publishedAt}`}>
           <ResultItem
             author={key.author}
             content={key.description}
@@ -20,13 +20,9 @@ const Results = ({ data, searchValue }) => {
             keyId={key.id}
           />
         </Link>
-
       ))}
     </div>
   );
-}
+};
 
-
-
-  ;
 export default Results;
