@@ -18,6 +18,7 @@ const Home = ({
   load,
   status,
 }) => (
+
   <div className="page">
     <Search sendData={renderData} searchValue={searchValue} setSearchValue={setSearchValue} />
 
