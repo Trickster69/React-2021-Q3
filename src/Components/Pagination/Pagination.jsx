@@ -1,34 +1,31 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import s from './Pagination.module.css';
+import * as action from '../../store/actions/search';
 
-const Pagination = ({
-  page, setPage, resultCount, setResultCount, articlesCount,
-}) => {
-  const [showDiv, setShowDiv] = useState({ showDivPages: true, showDivCount: true });
-
-  const pageCount = Math.floor(articlesCount / resultCount) || 1;
+const Pagination = () => {
+  const { articlesCount, countShowNews, page } = useSelector((state) => state.search);
+  const dispatch = useDispatch();
+  const [showDiv, setShowDiv] = useState(true);
+  const pageCount = Math.floor(articlesCount / countShowNews) || 1;
 
   function handleInput(e) {
-    setPage(e.target.value);
-    setShowDiv({ ...showDiv, showDivPages: true });
+    setShowDiv(false);
+    dispatch(action.setPageAC(e.target.value));
   }
 
   function nextPage() {
-    showDiv.showDivPages = true;
-    if (page >= pageCount) {
-      setPage(+page);
-    } else {
-      setPage(+page + 1);
-    }
+    setShowDiv(true);
+    dispatch(action.nextPageAC());
   }
 
   function prevPage() {
-    showDiv.showDivPages = true;
-    if (page <= 1) {
-      setPage(1);
-    } else {
-      setPage(+page - 1);
-    }
+    setShowDiv(true);
+    dispatch(action.prevPageAC());
+  }
+
+  function setResultCount(e) {
+    dispatch(action.setResultCount(e.target.value));
   }
 
   return (
@@ -39,7 +36,7 @@ const Pagination = ({
         </button>
         <div className={s.page_nums}>
           {showDiv.showDivPages ? (
-            <button className={s.curPage} type="button" onClick={() => setShowDiv({ ...showDiv, showDivPages: false })}>
+            <button className={s.curPage} type="button" onClick={() => setShowDiv(false)}>
               {page}
             </button>
           ) : (
@@ -66,9 +63,9 @@ const Pagination = ({
         <span> Number of results per page:</span>
         <input
           type="number"
-          placeholder={resultCount}
-          value={resultCount}
-          onChange={(e) => setResultCount(e.target.value)}
+          placeholder={countShowNews}
+          value={countShowNews}
+          onChange={setResultCount}
           className={s.page_input}
         />
       </div>

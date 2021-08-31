@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Search.module.css';
 import SearchImg from '../../assets/images/SearchBar/search.svg';
@@ -7,13 +7,15 @@ import * as action from '../../store/actions/search';
 
 const Search = () => {
   const {
-    page, searchValue, countNews, sort,
+    page, searchValue, countShowNews, sort,
   } = useSelector((state) => state.search);
   const dispatch = useDispatch();
 
   const setSearchValue = (e) => {
     dispatch(action.setSearchValueAC(e.target.value));
   };
+
+  useEffect(() => setData(), [sort, page, countShowNews]);
 
   const sendData = (e) => {
     e.preventDefault();
@@ -23,10 +25,13 @@ const Search = () => {
   const setData = () => {
     // const myApKey = '67174a0eb17a40fdb98e15abe64a8943';
     const newApi = 'e255430b001240abbe0a0ca24cc36486';
-    fetch(`https://newsapi.org/v2/everything?q=${searchValue}&sortBy=${sort}&apiKey=${newApi}&pageSize=${countNews}&page=${page}`)
+    fetch(`https://newsapi.org/v2/everything?q=${searchValue}&sortBy=${sort}&apiKey=${newApi}&pageSize=${countShowNews}&page=${page}`)
       .then((res) => res.json())
       .then((data) => {
-        dispatch(action.setSearchValueAC(data.articles));
+        if (data.status !== 'ok') {
+          dispatch(action.setStatsuServer(data.status));
+        }
+        dispatch(action.setDataAC(data.articles));
       });
   };
 
