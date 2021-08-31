@@ -5,10 +5,7 @@ import Search from '../../Components/Search/Search';
 import Sorting from '../../Components/Sorting/Sorting';
 
 const Home = ({
-  renderData,
   searchValue,
-  setSearchValue,
-  setSort,
   page,
   setPage,
   resultCount,
@@ -20,9 +17,9 @@ const Home = ({
 }) => (
 
   <div className="page">
-    <Search sendData={renderData} searchValue={searchValue} setSearchValue={setSearchValue} />
+    <Search />
 
-    <Sorting setSort={setSort} />
+    <Sorting />
 
     <Pagination
       page={page}

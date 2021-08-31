@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import store from './store/store';
 import Header from './Components/Header/Header';
 import About from './Pages/About/About';
 import NotFound from './Pages/NotFound/NotFound';
@@ -56,51 +58,52 @@ function App() {
   useEffect(() => fetchData(), [sort, page, resultCount]);
 
   return (
-    <Router>
-      <div className="App">
-        <Header />
-        <div className="app_wrapper">
-          <Route render={({ location }) => (
-            <TransitionGroup>
-              <CSSTransition
-                key={location.key}
-                timeout={300}
-                classNames="fade"
-              >
-                <Switch location={location}>
-                  <Route
-                    exact
-                    path="/"
-                    render={() => (
-                      <Home
-                        renderData={renderData}
-                        articles={articles}
-                        setSort={setSort}
-                        searchValue={searchValue}
-                        setSearchValue={setSearchValue}
-                        articlesCount={articlesCount}
-                        load={load}
-                        status={status}
-                        resultCount={resultCount}
-                        setResultCount={setResultCount}
-                        page={page}
-                        setPage={setPage}
-                      />
-                    )}
-                  />
-                  <Route path="/detail/:id" component={Details} />
-                  <Route exact path="/about" component={About} />
-                  <Route path="/*" component={NotFound} />
-                </Switch>
-              </CSSTransition>
+    <Provider store={store}>
+      <Router>
+        <div className="App">
+          <Header />
+          <div className="app_wrapper">
+            <Route render={({ location }) => (
+              <TransitionGroup>
+                <CSSTransition
+                  key={location.key}
+                  timeout={300}
+                  classNames="fade"
+                >
+                  <Switch location={location}>
+                    <Route
+                      exact
+                      path="/"
+                      render={() => (
+                        <Home
+                          renderData={renderData}
+                          articles={articles}
+                          setSort={setSort}
+                          articlesCount={articlesCount}
+                          load={load}
+                          status={status}
+                          resultCount={resultCount}
+                          setResultCount={setResultCount}
+                          page={page}
+                          setPage={setPage}
+                        />
+                      )}
+                    />
+                    <Route path="/detail/:id" component={Details} />
+                    <Route exact path="/about" component={About} />
+                    <Route path="/*" component={NotFound} />
+                  </Switch>
+                </CSSTransition>
 
-            </TransitionGroup>
-          )}
-          />
+              </TransitionGroup>
+            )}
+            />
 
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </Provider>
+
   );
 }
 

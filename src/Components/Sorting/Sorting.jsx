@@ -1,9 +1,12 @@
 import React from 'react';
 import s from './Sorting.module.css';
+import * as action from '../../store/actions/search';
+import { useDispatch } from 'react-redux';
 
-const Sorting = ({ setSort }) => {
+const Sorting = () => {
+  const dispatch = useDispatch();
   function hadleChange(e) {
-    setSort(e.target.value);
+    dispatch(action.setSortingAC(e.target.value));
   }
   return (
     <select className={s.select} onChange={(e) => hadleChange(e)}>
