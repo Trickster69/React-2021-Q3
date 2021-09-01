@@ -9,7 +9,7 @@ const Details = ({ match }) => {
     detailsData, load, statusResp, errorMessage,
   } = useSelector((state) => state.details);
 
-  const newApi = 'a51463898d2a4cd2b0818abc2581450d';
+  const newApi = '1a51463898d2a4cd2b0818abc2581450d';
   const [searchValue, id] = match.params.id.split('@');
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Details = ({ match }) => {
 
   const getObj = () => {
     dispatch(actions.setDetailsIsLoading());
-
+    dispatch(actions.setDetailsData(''));
     fetch(`https://newsapi.org/v2/everything?q=${searchValue}&apiKey=${newApi}&pageSize=100`)
       .then((data) => data.json())
       .then((data) => {
