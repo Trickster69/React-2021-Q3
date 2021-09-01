@@ -8,11 +8,12 @@ const inititalState = {
   sort: 'relevancy',
   articlesCount: 0,
   totalPages: 1,
-  status: '',
+  error: '',
+  isLoad: false,
 };
 
 export default function searchReducer(state = inititalState, action) {
-    // debugger;
+  // debugger;
   const { type, payload } = action;
 
   switch (type) {
@@ -22,54 +23,59 @@ export default function searchReducer(state = inititalState, action) {
         searchValue: payload,
       };
 
-      case consts.setData:
+    case consts.setData:
       return {
         ...state,
         dataNews: payload,
       };
 
-      case consts.setSort:
+    case consts.setSort:
       return {
         ...state,
         sort: payload,
       };
 
-      case consts.setPage:
+    case consts.setPage:
       return {
         ...state,
         page: payload,
       };
 
-      case consts.nextPage:
+    case consts.nextPage:
       return {
         ...state,
         page: state.page + 1,
       };
 
-      case consts.prevPage:
+    case consts.prevPage:
       return {
         ...state,
         page: state.page > 1 ? state.page - 1 : 1,
       };
 
-      case consts.setResultCount:
+    case consts.setResultCount:
       return {
         ...state,
         countShowNews: payload > 0 ? payload : 1,
       };
 
-      case consts.setTotalPages:
+    case consts.setTotalPages:
       return {
         ...state,
         totalPages: Math.floor(payload / state.resultCount),
       };
 
-      case consts.setStatusServer:
+    case consts.setStatusServer:
       return {
         ...state,
-        status: payload,
+        error: payload,
       };
 
+    case consts.setIsLoading:
+      return {
+        ...state,
+        isLoad: !state.isLoad,
+      };
 
     default:
       return state;

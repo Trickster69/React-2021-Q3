@@ -6,3 +6,4 @@ export const nextPage = 'NEXT_PAGE';
 export const prevPage = 'PREV_PAGE';
 export const setResultCount = 'SET_RESULT_COUNT';
 export const setStatusServer = 'Set-status';
+export const setIsLoading = 'Set_isLOADING';

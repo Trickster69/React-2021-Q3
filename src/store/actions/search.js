@@ -43,15 +43,22 @@ export function prevPageAC(payload) {
 }
 
 export function setResultCount(payload) {
-    return {
-      type: constants.setResultCount,
-      payload,
-    };
-  }
+  return {
+    type: constants.setResultCount,
+    payload,
+  };
+}
 
 export function setStatsuServer(payload) {
-return {
+  return {
     type: constants.setStatusServer,
     payload,
-};
+  };
+}
+
+export function setIsLoading(payload) {
+  return {
+    type: constants.setIsLoading,
+    payload,
+  };
 }

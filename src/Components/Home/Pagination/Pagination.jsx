@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import s from './Pagination.module.css';
-import * as action from '../../store/actions/search';
+import * as action from '../../../store/actions/search';
 
 const Pagination = () => {
   const { articlesCount, countShowNews, page } = useSelector((state) => state.search);

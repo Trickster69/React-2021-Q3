@@ -1,7 +1,7 @@
 import React from 'react';
-import s from './Sorting.module.css';
-import * as action from '../../store/actions/search';
 import { useDispatch } from 'react-redux';
+import s from './Sorting.module.css';
+import * as action from '../../../store/actions/search';
 
 const Sorting = () => {
   const dispatch = useDispatch();
