@@ -24,9 +24,9 @@ const Search = () => {
 
   const setData = () => {
     dispatch(action.setIsLoading());
-    // const myApKey = '67174a0eb17a40fdb98e15abe64a8943';
-    const newApi = 'e255430b001240abbe0a0ca24cc36486';
-    fetch(`https://newsapi.org/v2/everything?q=${searchValue}&sortBy=${sort}&apiKey=${newApi}&pageSize=${countShowNews}&page=${page}`)
+    const myApKey = '67174a0eb17a40fdb98e15abe64a8943';
+    // const newApi = 'e255430b001240abbe0a0ca24cc36486';
+    fetch(`https://newsapi.org/v2/everything?q=${searchValue}&sortBy=${sort}&apiKey=${myApKey}&pageSize=${countShowNews}&page=${page}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.status !== 'ok' && data.code !== 'parametersMissing') {
